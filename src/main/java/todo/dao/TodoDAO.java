@@ -23,11 +23,7 @@ public class TodoDAO {
 
 	public List<ToDoUser> findBYGmail(String gmail) {
 
-		return Manager.createQuery("select x from ToDoUser x where gmail=?1").setParameter(1, gmail).getResultList();		}
-
-	public List<ToDoUser> FetchAllTask(int id) {
-		return Manager.createQuery("select x from TodoTask x where user_id=?1").setParameter(1, id).getResultList();
-		
+		return Manager.createQuery("select x from ToDoUser x where gmail=?1").setParameter(1, gmail).getResultList();
 	}
 
 	public void save(TodoTask task) {
@@ -35,5 +31,28 @@ public class TodoDAO {
 		Manager.persist(task);
 		Manager.getTransaction().commit();
 
+	}
+
+	public  List<TodoTask> FetchAllTask(int id) {
+		return Manager.createQuery("select x from TodoTask x where user_id=?1").setParameter(1, id).getResultList();
+
+	}
+
+	public TodoTask fetchTaskByid(int id) {
+		
+		return Manager.find(TodoTask.class, id);
+	}
+
+	public void delete(TodoTask task) {
+		Manager.getTransaction().begin();
+		Manager.remove(task);
+		Manager.getTransaction().commit();
+		
+	}
+	public void Update(TodoTask task) {
+		Manager.getTransaction().begin();
+		Manager.merge(task);
+		Manager.getTransaction().commit();
+		
 	}
 }

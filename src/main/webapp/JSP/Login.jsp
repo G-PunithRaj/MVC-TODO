@@ -18,11 +18,14 @@
 
 <body>
 	<div>
+	
+	<h2 style="color:green">${fail}</h2>
 		<h1>Todo Login</h1>
 		<h2 style="color:green">${pass}</h2>
 		<!-- action is address where the values are carried to  -->
 		<form action="login" method="post">
 			<fieldset>
+			<h2 style="color:red">${create}</h2>
 				<legend>Login here,</legend>
 				<table>
 					<tr>

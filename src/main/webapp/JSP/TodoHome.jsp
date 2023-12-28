@@ -1,5 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1" isELIgnored="false"%>
+<%@ taglib prefix="Spring" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@page import="java.time.format.DateTimeFormatter"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,10 +26,21 @@ div {
 				<th>Task Description</th>
 				<th>Date Created</th>
 				<th>Status</th>
-				<th>Delete</th>
 				<th>Edit</th>
 			</tr>
-			
+			<Spring:forEach var="task" items="${list}">
+				<tr>
+					<th>${task.name}</th>
+					<th>${task.description}</th>
+					<th>${task.createdTime.format(DateTimeFormatter.ofPattern('dd-MM-YYYY hh:mm'))}</th>
+					<th><spring:if test="${task.status}">
+				    
+					</spring:if> <spring:if test="${!task.status}">
+							<a href="change-status?id=${task.id}"><button>COMPLETE-NOW</button></a>
+						</spring:if></th>
+					<th><a href="edit?id=${task.id}"><button>Edit</button></a></th>
+				</tr>
+			</Spring:forEach>
 		</table>
 		<br> <a href="add-task"><button>Add Task</button></a><br> <a
 			href="logout"><button>Logout</button></a>
