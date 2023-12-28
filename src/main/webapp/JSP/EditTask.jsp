@@ -18,7 +18,7 @@ div {
 <form action="update-task" method="post">
 		<input type="hidden" name="id" value="${task.id}">
 			<fieldset>
-				<legend>Enter Task here,</legend>
+				<legend>Enter Task here</legend>
 				<table>
 					<tr>
 						<th>Task Name: </th>
